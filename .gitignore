@@ -36,6 +36,7 @@
 # ------------
 
 *.yaml
+.vscode/
 
 # LaTeX makefile build dir
 # ------------------------
