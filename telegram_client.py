@@ -8,4 +8,4 @@ auth = config("dev-config.yaml", "telegram")
 
 def send_message(text: str):
     bot = telegram.Bot(token=auth[2]['botToken'])
-    bot.send_message(text=text, chat_id='@TestEnv102299')
+    bot.send_message(text=text, chat_id=auth[3]['chatId'])
