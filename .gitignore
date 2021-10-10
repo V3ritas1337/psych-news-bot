@@ -37,7 +37,8 @@
 
 *.yaml
 .vscode/
-
+*.session
+convert_test.py
 # LaTeX makefile build dir
 # ------------------------
 

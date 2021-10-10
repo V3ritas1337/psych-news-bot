@@ -1,9 +1,6 @@
 import yaml
 
-with open('dev-config.yaml', 'r') as f:
-   data = yaml.load(f, Loader=yaml.FullLoader)
-
-PA = data['feeds'][0]['psilocybinalpha']
-TR = data['feeds'][1]['trufflereport']
-CS = data['feeds'][2]['cannabisstock']
-PSW = data['feeds'][3]['psychedelicstockwatch']
+def config(yml_file: str, info: str):
+   with open(yml_file, 'r') as f:
+      data = yaml.load(f, Loader=yaml.FullLoader)
+      return(data[f'{info}'])

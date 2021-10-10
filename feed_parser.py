@@ -1,17 +1,27 @@
+# import feedparser
+import dateutil.parser
 import feedparser
-from config import PA, TR, CS, PSW
+from config import config
 from datetime import date, datetime
 
 
-def parser(symbol):
-    NewsFeed = feedparser.parse(symbol)
-    entry = NewsFeed.entries
-    return entry # entry.published_parsed
+feeds = config("dev-config.yaml", "feeds")
+def collect_news(feeds: list):
+    feed = [item for feed in feeds for item in feed.values()]
+    feeds = [feedparser.parse(url)['entries'] for url in feed]
+    links = []
 
-# TODO: if todays date same as published_parsed, print link :) 
-# print(datetime(parser(PA)[:6]))
-print(parser(TR))
-print(parser(TR).published_parsed)
-# https://waylonwalker.com/parsing-rss-python/
+    for feed in feeds:
+        feed.sort(key=lambda x: dateutil.parser.parse(x['published']), reverse=True)
+        for data in feed:
+            # print(data.keys())
+            # links.append(data['link'])
+            # print("LINK: " + str(data['link']) + '\n' + "Date Published: " + 
+            print(str(data['published']))
+            # print(data.keys())
+    # return links
 
-# print(date.split(' '))
+
+collect_news(feeds)
+
+
