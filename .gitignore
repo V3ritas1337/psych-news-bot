@@ -35,7 +35,7 @@
 # Custom Files
 # ------------
 
-*.yaml
+*.yaml/ 
 .vscode/
 *.session
 convert_test.py
