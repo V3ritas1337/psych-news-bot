@@ -39,6 +39,7 @@
 .vscode/
 *.session
 convert_test.py
+logging/
 # LaTeX makefile build dir
 # ------------------------
 
