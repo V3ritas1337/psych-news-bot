@@ -5,16 +5,12 @@
 FROM python:latest
 
 COPY ./ .
-RUN /usr/local/bin/python -m pip install --upgrade pip && /usr/local/bin/python -m pip install -r requirements.txt
+RUN apt-get update
+RUN apt-get install -y python3-pip
+RUN pip install -U python-dateutil
+RUN pip install -U pyyaml
+RUN pip install -U feedparser
+RUN pip install -U python_telegram_bot
+RUN pip install -U telegram
 
-# In order to launch our python code, we must import it into our image.
-# We use the keyword 'COPY' to do that.
-# The first parameter 'main.py' is the name of the file on the host.
-# The second parameter '/' is the path where to put the file on the image.
-# Here we put the file at the image root folder.
-
-
-# We need to define the command to launch when we are going to run the image.
-# We use the keyword 'CMD' to do that.
-# The following command will execute "python ./main.py".
-CMD [ "python", "./main.py" ]
+CMD [ "python3", "./main.py" ]

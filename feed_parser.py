@@ -6,9 +6,9 @@ import feedparser
 
 def collect_news(feeds: list):
     '''Collects and Organises Feeds fed from config into one decentralised feed for parsing'''
-    
+
     collected_news = []
-    
+
     feed = [item for feed in feeds for item in feed.values()]
     feeds = [feedparser.parse(url)['entries'] for url in feed]
     
@@ -32,6 +32,7 @@ def parse_links(feeds: list):
             now_date = datetime.utcnow()
 
             published_20_minutes_ago = now_date - parsed_date < timedelta(minutes=20)
+
             if published_20_minutes_ago:
                 links.append(data['link'])
     
