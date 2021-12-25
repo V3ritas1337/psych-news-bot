@@ -8,6 +8,7 @@ load_feeds = config("dev-config.yaml", "feeds")
 
 feed = collect_news(load_feeds)
 message = parse_links(feed)
+print(message)
 for link in message:
     # if link is None: -> fix this flow later
     send_message(link)
