@@ -10,7 +10,7 @@ feed = collect_news(load_feeds)
 message = parse_links(feed)
 print(message)
 
-send_message("testing docker container :)")
-# for link in message:
-#     # if link is None: -> fix this flow later
-#     send_message(link)
+# send_message("testing docker container :)")
+for link in message:
+    # if link is None: -> fix this flow later
+    send_message(link)

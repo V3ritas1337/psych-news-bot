@@ -3,6 +3,7 @@ from datetime import timedelta, datetime
 from config import config
 import dateutil.parser
 import feedparser
+import pytz
 
 def collect_news(feeds: list):
     '''Collects and Organises Feeds fed from config into one decentralised feed for parsing'''
@@ -28,8 +29,10 @@ def parse_links(feeds: list):
     for feed in feeds:
         for data in feed:
             parsed_date = parser.parse(data.published)
-            parsed_date = (parsed_date - timedelta(hours=8)).replace(tzinfo=None)
-            now_date = datetime.utcnow()
+            # Convert parsed_date to your specific timezone
+            my_tz = pytz.timezone('UTC')
+            parsed_date = parsed_date.astimezone(my_tz)
+            now_date = datetime.now(my_tz)
 
             published_20_minutes_ago = now_date - parsed_date < timedelta(minutes=20)
 
@@ -37,3 +40,5 @@ def parse_links(feeds: list):
                 links.append(data['link'])
     
     return links
+
+
